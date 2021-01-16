@@ -91,6 +91,13 @@ def getResult(inputSTR, utterance, args, resultDICT):
 
     if utterance == "[紅色]跟[黑色]的":
         resultDICT["color"] = args[0]+'%20'+args[1]
+    
+    if utterance == "[白色]":
+        resultDICT["color"] = args[0]
+
+    if utterance == "[白色]三角形藥丸":
+        resultDICT["color"] = args[0]
+
 
 
     return resultDICT

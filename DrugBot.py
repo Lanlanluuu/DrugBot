@@ -170,50 +170,50 @@ def runLoki(inputLIST):
     resultDICT["shape"]={}
     resultDICT["character"]={}
     resultDICT["number"]={}
-    print(inputLIST)
     lokiRst = LokiResult(inputLIST)
-    print(lokiRst.getStatus())
     if lokiRst.getStatus():
-        print(3)
         for index, key in enumerate(inputLIST):
             for resultIndex in range(0, lokiRst.getLokiLen(index)):
                 # character
                 if lokiRst.getIntent(index, resultIndex) == "character":
                     resultDICT = Loki_character.getResult(key, lokiRst.getUtterance(index, resultIndex), lokiRst.getArgs(index, resultIndex), resultDICT)
+                    print("character: ",resultDICT["character"])
                     
                 # color
                 if lokiRst.getIntent(index, resultIndex) == "color":
-                    print(key)
-                    print(lokiRst.getUtterance(index, resultIndex))
-                    print(lokiRst.getArgs(index, resultIndex))
                     resultDICT = Loki_color.getResult(key, lokiRst.getUtterance(index, resultIndex), lokiRst.getArgs(index, resultIndex), resultDICT)
+                    print("color: ",resultDICT["color"])
 
                 # number
                 if lokiRst.getIntent(index, resultIndex) == "number":
                     resultDICT = Loki_number.getResult(key, lokiRst.getUtterance(index, resultIndex), lokiRst.getArgs(index, resultIndex), resultDICT)
+                    print("number: ",resultDICT["number"])
+
                 # shape
                 if lokiRst.getIntent(index, resultIndex) == "shape":
-                    print(key)
-                    print(lokiRst.getUtterance(index, resultIndex))
-                    print(lokiRst.getArgs(index, resultIndex))
                     resultDICT = Loki_shape.getResult(key, lokiRst.getUtterance(index, resultIndex), lokiRst.getArgs(index, resultIndex), resultDICT)
+                    print("shape: ",resultDICT["shape"])
+                    
         if (resultDICT["color"]=={}):
-            resultDICT["color"]=' '
+            resultDICT["color"]=''
         if (resultDICT["shape"]=={}):
-            resultDICT["shape"]=' '
+            resultDICT["shape"]=''
         if (resultDICT["character"]=={}):
-            resultDICT["character"]=' '
+            resultDICT["character"]=''
         if(resultDICT["number"]=={}):
-            resultDICT["number"]=' '
+            resultDICT["number"]=''
+        #sum = [resultDICT["color"],resultDICT["shape"],resultDICT["character"],resultDICT["number"]]
+        #sep="%20"
+        #print('s1.join(s2):', sum.join(sep))
         url = "https://drugs.olc.tw/drugs/outward/{}%20{}%20{}%20{}".format(resultDICT["color"],resultDICT["shape"], resultDICT["character"], resultDICT["number"])
     else:
         resultDICT = {"msg": lokiRst.getMessage()}
     return url
 
 
-
+# 測試用
 if __name__ == "__main__":
-    inputLIST = ["紅色跟黑色的圓柱形膠囊，上面寫了一個P"]
+    inputLIST = ["上面有一個P的白色圓柱形膜衣錠"]
     resultDICT = runLoki(inputLIST)
     print("Result => {}".format(resultDICT))
     

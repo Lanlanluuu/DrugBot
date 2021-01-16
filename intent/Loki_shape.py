@@ -15,7 +15,7 @@
 """
 
 DEBUG_shape = True
-userDefinedDICT = {"粉": ["粉末", "粉狀"], "液體": ["液狀物", "液狀", "液態"], "網紅": [""], "落紅": [""], "紅不讓": [""]}
+userDefinedDICT = {"粉": ["粉末", "粉狀"], "液體": ["液狀物", "液狀", "液態"], "網紅": [""], "落紅": [""], "紅不讓": [""], "膜衣錠": ["膜衣錠"]}
 
 # 將符合句型的參數列表印出。這是 debug 或是開發用的。
 def debugInfo(inputSTR, utterance):
@@ -27,7 +27,7 @@ def getResult(inputSTR, utterance, args, resultDICT):
 
     if utterance == "[五][角形]的藥丸":
         if args[1] == "角形":
-            resultDICT["shape"] = args[0]+args[1]
+            resultDICT["shape"].append(args[0]+args[1])
         pass
 
     if utterance == "[五][角形]藥片":
@@ -36,8 +36,8 @@ def getResult(inputSTR, utterance, args, resultDICT):
         pass
 
     if utterance == "[圓形]":
-        resultDICT["shape"] = args[0]
-        # write your code here
+        if "形" in args[0]:
+            resultDICT["shape"] = args[0]
         pass
 
     if utterance == "[裡面]有橘色的[粉末]":
@@ -99,4 +99,23 @@ def getResult(inputSTR, utterance, args, resultDICT):
         # write your code here
         pass
 
+    if utterance == "白色[三角形][膜衣錠]":
+        if args[1] == "膜衣錠":
+            resultDICT["shape"] = args[0]+"%20"+args[1]
+        else:
+            resultDICT["shape"] = args[0]
+        # args [三角形, 膜衣錠]
+
+    if utterance == "[三][角形][膜衣錠]":
+        if args[2] == "膜衣錠":
+            resultDICT["shape"] = args[0]+args[1]+"%20"+args[2]
+        else:
+            resultDICT["shape"] = args[0]+args[1]
+        # args [三, 角形, 膜衣錠]
+
+    if utterance == "白色[圓][柱形][膜衣錠]":
+        if args[2] == "膜衣錠":
+            resultDICT["shape"] = args[0]+args[1]+"%20"+args[2]
+        else:
+            resultDICT["shape"] = args[0]+args[1]
     return resultDICT
