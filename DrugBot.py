@@ -57,8 +57,8 @@ except:
 
 
 LOKI_URL = "https://api.droidtown.co/Loki/BulkAPI/"
-USERNAME = ""
-LOKI_KEY = ""
+USERNAME = "xww1748.fl06@g2.nctu.edu.tw"
+LOKI_KEY = "vE2E@j3eQ_#-R2YruWo+#2$yKFbFHak"
 # 意圖過濾器說明
 # INTENT_FILTER = []        => 比對全部的意圖 (預設)
 # INTENT_FILTER = [intentN] => 僅比對 INTENT_FILTER 內的意圖
@@ -202,10 +202,11 @@ def runLoki(inputLIST):
             resultDICT["character"]=''
         if(resultDICT["number"]=={}):
             resultDICT["number"]=''
-        #sum = [resultDICT["color"],resultDICT["shape"],resultDICT["character"],resultDICT["number"]]
-        #sep="%20"
-        #print('s1.join(s2):', sum.join(sep))
-        url = "https://drugs.olc.tw/drugs/outward/{}%20{}%20{}%20{}".format(resultDICT["color"],resultDICT["shape"], resultDICT["character"], resultDICT["number"])
+        sum = [resultDICT["color"],resultDICT["shape"],resultDICT["character"],resultDICT["number"]]
+        sep="%20"
+        #print(sep.join(sum))
+        #url = "https://drugs.olc.tw/drugs/outward/{}%20{}%20{}%20{}".format(resultDICT["color"],resultDICT["shape"], resultDICT["character"], resultDICT["number"])
+        url = "https://drugs.olc.tw/drugs/outward/" + sep.join(sum)
     else:
         resultDICT = {"msg": lokiRst.getMessage()}
     return url
@@ -213,7 +214,7 @@ def runLoki(inputLIST):
 
 # 測試用
 if __name__ == "__main__":
-    inputLIST = ["上面有一個P的白色圓柱形膜衣錠"]
+    inputLIST = ["紅色跟黑色的圓柱形膠囊，上面寫了一個P"]
     resultDICT = runLoki(inputLIST)
     print("Result => {}".format(resultDICT))
     
