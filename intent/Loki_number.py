@@ -25,103 +25,83 @@ def debugInfo(inputSTR, utterance):
 def getResult(inputSTR, utterance, args, resultDICT):
     debugInfo(inputSTR, utterance)
     if utterance == "[上面]刻著[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
-
+    
     if utterance == "[上面]刻著[一個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[2]
-
 
     if utterance == "[上面]印了[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]印有[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]印有[一個][1]":
-        # write your code here
-        resultDICT["number"] = args[1]
-
+         
+        resultDICT["number"] = args[2]
 
     if utterance == "[上面]印的字是[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]印著[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]印著[一個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[2]
-
 
     if utterance == "[上面]寫[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]寫了[一個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[2]
-
 
     if utterance == "[上面]寫著[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]有[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "[上面]有[一個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[2]
-
 
     if utterance == "[上面]有刻[一個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[2]
 
-
     if utterance == "[上面]的字是[1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     if utterance == "他印[1]":
-        # write your code here
+         
         resultDICT["number"] = args[0]
-
 
     if utterance == "刻了[1]":
-        # write your code here
+         
         resultDICT["number"] = args[0]
-
 
     if utterance == "印有[1]":
-        # write your code here
+         
         resultDICT["number"] = args[0]
-
 
     if utterance == "寫著[1]":
-        # write your code here
+         
         resultDICT["number"] = args[0]
 
-
     if utterance == "有[個][1]":
-        # write your code here
+         
         resultDICT["number"] = args[1]
-
 
     return resultDICT

@@ -25,97 +25,78 @@ def debugInfo(inputSTR, utterance):
 def getResult(inputSTR, utterance, args, resultDICT):
     debugInfo(inputSTR, utterance)
 
+    if utterance == "[三][角形][膜衣錠]":
+        if args[2] == "膜衣錠":
+            resultDICT["shape"] = args[0]+args[1]+"%20"+args[2]
+        else:
+            resultDICT["shape"] = args[0]+args[1]
+
     if utterance == "[五][角形]的藥丸":
         if args[1] == "角形":
             resultDICT["shape"].append(args[0]+args[1])
-        pass
 
     if utterance == "[五][角形]藥片":
         if args[1] == "角形":
             resultDICT["shape"] = args[0]+args[1]
-        pass
 
     if utterance == "[圓形]":
         if "形" in args[0]:
             resultDICT["shape"] = args[0]
-        pass
 
     if utterance == "[裡面]有橘色的[粉末]":
         resultDICT["shape"] = args[1]
-        # write your code here
-        pass
 
     if utterance == "應該是[膠囊]":
         resultDICT["shape"] = args[0]
-        # write your code here
-        pass
 
     if utterance == "我有[一顆]白色[圓形]的藥丸":
         if "形" in args[1]:
             resultDICT["shape"] = args[1]
-        # write your code here
-        pass
 
     if utterance == "我有[一顆]白色的[三][角形]藥片":
         if args[2] == "角形":
             resultDICT["shape"] = args[1]+args[2]
-        # write your code here
-        pass
 
-    if utterance == "我有[一顆]白色的[圓]形藥丸":
-        resultDICT["shape"] = args[1]
-        # write your code here
-        pass
+    if utterance == "我有[一顆]白色的圓形藥丸":
+        resultDICT["shape"] = ""
 
     if utterance == "我有[一顆]白色的藥丸[圓圓]的":
         resultDICT["shape"] = args[1]
-        # write your code here
-        pass
 
     if utterance == "我有[一顆]白色的藥丸他是[圓形]的":
         if "形" in args[1]:
             resultDICT["shape"] = args[1]
-        # write your code here
-        pass
 
     if utterance == "是[一顆][膠囊]":
         resultDICT["shape"] = args[1]
-        # write your code here
-        pass
-
-    if utterance == "看起來是[方形]的[藥丸]":
-        if "形" in args[0]:
-            resultDICT["shape"] = args[0]
-        # write your code here
-        pass
-
-    if utterance == "看起來是[膠囊]":
-        resultDICT["shape"] = args[0]
-        # write your code here
-        pass
-
-    if utterance == "黃色的[粉]":
-        resultDICT["shape"] = args[0]
-        # write your code here
-        pass
 
     if utterance == "白色[三角形][膜衣錠]":
         if args[1] == "膜衣錠":
             resultDICT["shape"] = args[0]+"%20"+args[1]
         else:
             resultDICT["shape"] = args[0]
-        # args [三角形, 膜衣錠]
-
-    if utterance == "[三][角形][膜衣錠]":
-        if args[2] == "膜衣錠":
-            resultDICT["shape"] = args[0]+args[1]+"%20"+args[2]
-        else:
-            resultDICT["shape"] = args[0]+args[1]
-        # args [三, 角形, 膜衣錠]
 
     if utterance == "白色[圓][柱形][膜衣錠]":
         if args[2] == "膜衣錠":
             resultDICT["shape"] = args[0]+args[1]+"%20"+args[2]
         else:
             resultDICT["shape"] = args[0]+args[1]
+
+    if utterance == "看起來是[方形]的[藥丸]":
+        if "形" in args[0]:
+            resultDICT["shape"] = args[0]
+
+    if utterance == "看起來是[膠囊]":
+        resultDICT["shape"] = args[0]
+
+    if utterance == "粉末":
+        resultDICT["shape"] = "粉末"
+
+    if utterance == "黃色的[粉]":
+        resultDICT["shape"] = "粉"
+    
+    if utterance == "[一個][圓圓]的粉紅色藥丸":
+        dict = set(args[1]) # set()去重複化（會變成dict）
+        resultDICT["shape"] = dict.pop() # 取出dict裡的東西
+
     return resultDICT

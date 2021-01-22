@@ -56,9 +56,9 @@ except:
     from .intent import Loki_shape
 
 
-LOKI_URL = ""
-USERNAME = ""
-LOKI_KEY = ""
+LOKI_URL = "https://api.droidtown.co/Loki/BulkAPI/"
+USERNAME = "xww1748.fl06@g2.nctu.edu.tw"
+LOKI_KEY = "vE2E@j3eQ_#-R2YruWo+#2$yKFbFHak"
 # 意圖過濾器說明
 # INTENT_FILTER = []        => 比對全部的意圖 (預設)
 # INTENT_FILTER = [intentN] => 僅比對 INTENT_FILTER 內的意圖
@@ -194,19 +194,19 @@ def runLoki(inputLIST):
                     resultDICT = Loki_shape.getResult(key, lokiRst.getUtterance(index, resultIndex), lokiRst.getArgs(index, resultIndex), resultDICT)
                     print("shape: ",resultDICT["shape"])
                     
-        if (resultDICT["color"]=={}):
-            resultDICT["color"]=''
-        if (resultDICT["shape"]=={}):
-            resultDICT["shape"]=''
-        if (resultDICT["character"]=={}):
-            resultDICT["character"]=''
-        if(resultDICT["number"]=={}):
-            resultDICT["number"]=''
-        sum = [resultDICT["color"],resultDICT["shape"],resultDICT["character"],resultDICT["number"]]
+        sum = [] #用來集合對到的intent
+        if (resultDICT["color"]!={}):
+            sum.append(resultDICT["color"])
+        if (resultDICT["shape"]!={}):
+            sum.append(resultDICT["shape"])
+        if (resultDICT["character"]!={}):
+            sum.append(resultDICT["character"])
+        if(resultDICT["number"]!={}):
+            sum.append(resultDICT["number"])
+            
         sep="%20"
-        #print(sep.join(sum))
+        url = "https://drugs.olc.tw/drugs/outward/" + sep.join(sum) # 用join把sum裡面抓到的值 (intent) 插入sep (%20)
         #url = "https://drugs.olc.tw/drugs/outward/{}%20{}%20{}%20{}".format(resultDICT["color"],resultDICT["shape"], resultDICT["character"], resultDICT["number"])
-        url = "https://drugs.olc.tw/drugs/outward/" + sep.join(sum)
     else:
         resultDICT = {"msg": lokiRst.getMessage()}
     return url
@@ -214,7 +214,7 @@ def runLoki(inputLIST):
 
 # 測試用
 if __name__ == "__main__":
-    inputLIST = ["紅色跟黑色的圓柱形膠囊，上面寫了一個P"]
+    inputLIST = ["一個圓圓的粉紅色藥丸"]
     resultDICT = runLoki(inputLIST)
     print("Result => {}".format(resultDICT))
     

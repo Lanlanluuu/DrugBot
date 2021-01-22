@@ -4,7 +4,7 @@
 import discord
 from DrugBot import runLoki as drugbot
 
-DISCORD_TOKEN=""
+DISCORD_TOKEN="Nzg5Mzc1MDAzMDE5NDQ0MjY0.X9xIwg.vsqnKUVsoIa-3TkDD0s23fJ8Jow"
 DISCORD_GUILD="Droidtown Linguistics Tech."
 BOT_NAME = "DrugBot"
 
@@ -40,6 +40,10 @@ async def on_message(message):
             await message.channel.send(response)
         elif "你在幹嘛" in message.content:
             response = "https://tenor.com/view/pedro-monkey-puppet-meme-awkward-gif-15268759"
+            await message.channel.send(response)
+        
+        elif "你有沒有那種白色的粉末" in message.content:
+            response = "我要報警了"
             await message.channel.send(response)
         
         else:
