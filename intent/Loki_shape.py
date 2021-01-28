@@ -98,5 +98,9 @@ def getResult(inputSTR, utterance, args, resultDICT):
     if utterance == "[一個][圓圓]的粉紅色藥丸":
         dict = set(args[1]) # set()去重複化（會變成dict）
         resultDICT["shape"] = dict.pop() # 取出dict裡的東西
+    
+    if utterance == "藍色[圓圓]小藥丸":
+        dict = set(args[0]) # set()去重複化（會變成dict）
+        resultDICT["shape"] = dict.pop() # 取出dict裡的東西
 
     return resultDICT

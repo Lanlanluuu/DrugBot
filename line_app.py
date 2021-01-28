@@ -42,8 +42,10 @@ def webhook():
 
                     #dataDICT["message"]是input的string，用[]包起來變InputLIST傳給RunLoki
                     response = drugbot([dataDICT["message"]])
-                    linebot.respTexts(dataDICT["replyToken"], ["以下為查詢結果：\n", response])
-                    
+                    if response == "https://drugs.olc.tw/drugs/outward/":
+                        linebot.respTexts(dataDICT["replyToken"], ["非藥物查詢的話我不會回答啦(╬☉д⊙)"])
+                    else:
+                        linebot.respTexts(dataDICT["replyToken"], ["以下為查詢結果：\n", response])
                     #linebot.respText(dataDICT["replyToken"], "咩噗") #回應到哪裡
                     #linebot.respText(dataDICT["replyToken"], dataDICT["message"]) #回應跟input一樣的回答
 

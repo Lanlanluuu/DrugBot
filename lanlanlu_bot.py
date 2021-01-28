@@ -4,7 +4,7 @@
 import discord
 from DrugBot import runLoki as drugbot
 
-DISCORD_TOKEN=""
+DISCORD_TOKEN="Nzg5Mzc1MDAzMDE5NDQ0MjY0.X9xIwg.vZyT_q6QK9HAdZaRQ4h8AgK87nU"
 DISCORD_GUILD="Droidtown Linguistics Tech."
 BOT_NAME = "DrugBot"
 
@@ -48,6 +48,8 @@ async def on_message(message):
         
         else:
             response = drugbot([message.content])
+            if response == "https://drugs.olc.tw/drugs/outward/":
+                response = "非藥物查詢的話我不會回答啦(╬☉д⊙)"
             await message.channel.send(response)
         
     elif "bot 點名" in message.content:
